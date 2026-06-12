@@ -1,45 +1,41 @@
 /*
-* Todo o arquivo .js pode virar um modulo.
-* Um módulo pode ser exportado para ser importado por qualquer
-* outro script.
-*/
+ * Calc.js é um módulo local do nosso projeto.
+ *
+ * Em Node.js, cada arquivo pode ser visto como um módulo.
+ * O módulo pode exportar o que queremos que outros arquivos
+ * usem, usando module.exports.
+ */
 
-class Calc{
-
-    constructor(){
-
+// Definimos uma classe de calculadora simples.
+class Calc {
+    constructor() {
+        // O constructor pode preparar o objeto, se necessário.
     }
 
-    add(a,b){
-        return a+b;
+    add(a, b) {
+        return a + b;
     }
 
-    sub(a,b){
-        return a-b;
-    }
-    
-    mul(a,b){
-        return a*b;
+    sub(a, b) {
+        return a - b;
     }
 
-    div(a,b){
-        if(b === 0) return null;
-
-        return a/b;
+    mul(a, b) {
+        return a * b;
     }
 
+    div(a, b) {
+        if (b === 0) return null;
+        return a / b;
+    }
 }
 
-function umaFuncao(){
-    console.log('executando uma funcao dentro de Calc');
+// Esta função é apenas para mostrar que podemos exportar
+// mais de uma coisa de um mesmo módulo.
+function umaFuncParaExportar(a) {
+    return 'Oi, sou ' + a;
 }
 
-function umaFuncParaExportar(a){
-    return "Oi, sou " + a;
-}
-
-let senha = "21334";
-
-umaFuncao();
-
-module.exports ={ Calc, umaFuncParaExportar };
+// Aqui estamos exportando a classe Calc e a função umaFuncParaExportar.
+// Quem fizer require('./Calc') vai receber esse objeto.
+module.exports = { Calc, umaFuncParaExportar };
