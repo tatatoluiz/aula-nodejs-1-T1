@@ -33,3 +33,6 @@ console.log(calc.sub(3, 2));
 
 // Chamamos também uma função simples exportada pelo módulo Calc.
 console.log(umaFuncParaExportar('PROG III'));
+
+const {play}=require('./karaoke/player')
+
