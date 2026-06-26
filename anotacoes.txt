@@ -1,1 +1,5 @@
 http->requisição e resposta->processa next()->resposta.send
+
+http é so texto
+
+botar try catch em tudo pra nao vaza os coiso
