@@ -1,0 +1,1 @@
+http->requisição e resposta->processa next()->resposta.send

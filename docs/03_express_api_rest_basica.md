@@ -21,17 +21,17 @@ Na aula anterior, comparamos a Web a um restaurante. Recapitulando os personagen
 
 | Personagem              | Na Web                                  |
 | ----------------------- | --------------------------------------- |
-| Cliente (você na mesa) | Navegador, Insomnia, Thunder Client     |
-| Garçom (HTTP)          | O protocolo que padroniza a conversa    |
+| Cliente (você na mesa)  | Navegador, Insomnia, Thunder Client     |
+| Garçom (HTTP)           | O protocolo que padroniza a conversa    |
 | Cozinha (Servidor)      | O programa Node.js que processa pedidos |
-| Bilhete de pedido       | A**Requisição** (Request)       |
-| Prato que volta à mesa | A**Resposta** (Response)          |
+| Bilhete de pedido       | A**Requisição** (Request)               |
+| Prato que volta à mesa  | A**Resposta** (Response)                |
 
 O garçom só aceita bilhetes padronizados. Cada bilhete tem um **verbo** indicando o que o cliente quer:
 
-| Verbo HTTP | Ação no restaurante             | Ação na API              |
-| ---------- | --------------------------------- | -------------------------- |
-| `GET`    | "Me traga o cardápio"            | Ler dados                  |
+| Verbo HTTP | Ação no restaurante             | Ação na API                |
+| ---------- | ------------------------------- | -------------------------- |
+| `GET`    | "Me traga o cardápio"             | Ler dados                  |
 | `POST`   | "Anote um pedido novo"            | Criar dados                |
 | `PUT`    | "Substitua o prato 5 por um novo" | Atualizar dados (completo) |
 | `DELETE` | "Cancele o pedido 8"              | Remover dados              |
@@ -79,10 +79,10 @@ Cada parte tem uma função específica:
 
 | Etapa                                    | O que faz                                                      |
 | ---------------------------------------- | -------------------------------------------------------------- |
-| `require('express')`                   | Carrega a biblioteca no programa                               |
-| `express()`                            | Cria a instância da aplicação                               |
-| `app.use(...)`                         | Registra**middlewares** (processamentos intermediários) |
-| `app.get(...)`, `app.post(...)` etc. | Define**rotas** — cada rota é um "balcão"             |
+| `require('express')`                   | Carrega a biblioteca no programa                              |
+| `express()`                            | Cria a instância da aplicação                                 |
+| `app.use(...)`                         | Registra**middlewares** (processamentos intermediários)       |
+| `app.get(...)`, `app.post(...)` etc.   | Define**rotas** — cada rota é um "balcão"                     |
 | `app.listen(porta)`                    | Abre o servidor para receber conexões                         |
 
 ### O que é um middleware?
@@ -289,7 +289,7 @@ app.get('/api/partes', (req, res) => {
 | Mecanismo    | Sintaxe na URL             | Acesso no Express     | Quando usar                        |
 | ------------ | -------------------------- | --------------------- | ---------------------------------- |
 | Route param  | `/api/partes/3`          | `req.params.indice` | Identificar um recurso específico |
-| Query string | `/api/partes?tag=verso1` | `req.query.tag`     | Filtrar, buscar, paginar           |
+| Query string | `/api/partes?tag=verso1` | `req.query.tag`     | Filtrar, buscar, paginar          |
 
 Na metáfora: o route param é como pedir "o prato número 3". A query string é como dizer "quero ver apenas os pratos vegetarianos do cardápio".
 
@@ -412,10 +412,10 @@ Após essa chamada, a parte que era índice 1 passa a ser índice 0. Todos os í
 
 Agora temos todas as operações **CRUD** (Create, Read, Update, Delete) mapeadas:
 
-| Operação                   | Verbo HTTP | Rota                                                  | Status de sucesso |
-| ---------------------------- | ---------- | ----------------------------------------------------- | ----------------- |
+| Operação               | Verbo HTTP | Rota                                              | Status de sucesso |
+| ---------------------- | ---------- | ------------------------------------------------- | ----------------- |
 | **C**reate (criar)     | `POST`   | `/api/partes`                                       | 201 Created       |
-| **R**ead (ler)         | `GET`    | `/api/musica`, `/api/partes`, `/api/partes/:id` | 200 OK            |
+| **R**ead (ler)         | `GET`    | `/api/musica`, `/api/partes`, `/api/partes/:id`     | 200 OK            |
 | **U**pdate (atualizar) | `PUT`    | `/api/partes/:id`                                   | 200 OK            |
 | **D**elete (remover)   | `DELETE` | `/api/partes/:id`                                   | 200 OK            |
 
@@ -541,12 +541,12 @@ HTTP/1.1 200 OK
 
 Em seguida, os cabeçalhos da resposta e, ao final, o corpo JSON. Compare o status recebido com o que você esperava:
 
-| Requisição                          | Status esperado     | Significa           |
+| Requisição                            | Status esperado     | Significa           |
 | ------------------------------------- | ------------------- | ------------------- |
-| GET de recurso existente              | `200 OK`          | Dados retornados    |
-| POST com dados válidos               | `201 Created`     | Recurso criado      |
-| POST/PUT com campos faltando          | `400 Bad Request` | Dados inválidos    |
-| GET/PUT/DELETE de índice inexistente | `404 Not Found`   | Recurso não existe |
+| GET de recurso existente              | `200 OK`            | Dados retornados    |
+| POST com dados válidos                | `201 Created`       | Recurso criado      |
+| POST/PUT com campos faltando          | `400 Bad Request`   | Dados inválidos     |
+| GET/PUT/DELETE de índice inexistente  | `404 Not Found`     | Recurso não existe  |
 
 #### Dicas de uso
 
@@ -656,8 +656,8 @@ O Node.js oferece um sistema de módulos que permite dividir o código em arquiv
 O mecanismo funciona com duas peças:
 
 | Peça    | Arquivo que**exporta** | Arquivo que**importa** |
-| -------- | ---------------------------- | ---------------------------- |
-| Função | `module.exports`           | `require()`                |
+| ------- | ---------------------- | ---------------------- |
+| Função  | `module.exports`       | `require()`            |
 
 #### `module.exports` — o que o arquivo expõe ao mundo
 
@@ -806,12 +806,12 @@ Cada arquivo tem uma responsabilidade única. Se precisar adicionar rotas de usu
 
 ### Benefícios da modularização
 
-| Sem modularização                  | Com modularização                       |
-| ------------------------------------ | ----------------------------------------- |
-| Um arquivo gigante                   | Arquivos pequenos e focados               |
+| Sem modularização                   | Com modularização                        |
+| ----------------------------------- | ---------------------------------------- |
+| Um arquivo gigante                  | Arquivos pequenos e focados              |
 | Difícil de encontrar uma rota       | Cada arquivo é um "mapa" claro           |
-| Conflitos em trabalho em equipe      | Cada pessoa edita um arquivo diferente    |
-| Teste manual do sistema inteiro      | Possibilidade de testar módulos isolados |
+| Conflitos em trabalho em equipe     | Cada pessoa edita um arquivo diferente   |
+| Teste manual do sistema inteiro     | Possibilidade de testar módulos isolados |
 | Erros se propagam por todo o código | Erros ficam contidos no módulo           |
 
 ---
@@ -820,17 +820,17 @@ Cada arquivo tem uma responsabilidade única. Se precisar adicionar rotas de usu
 
 ### Objeto `req` (Request) — o que o cliente enviou
 
-| Propriedade    | Descrição                       | Exemplo               |
-| -------------- | --------------------------------- | --------------------- |
-| `req.params` | Parâmetros da URL (`:id`)      | `req.params.indice` |
+| Propriedade  | Descrição                       | Exemplo             |
+| ------------ | ------------------------------- | ------------------- |
+| `req.params` | Parâmetros da URL (`:id`)       | `req.params.indice` |
 | `req.query`  | Query string (`?chave=valor`)   | `req.query.tag`     |
 | `req.body`   | Corpo da requisição (POST, PUT) | `req.body.letra`    |
-| `req.method` | Verbo HTTP usado                  | `"GET"`, `"POST"` |
+| `req.method` | Verbo HTTP usado                | `"GET"`, `"POST"`   |
 
 ### Objeto `res` (Response) — o que o servidor devolve
 
-| Método                         | Descrição                           |
-| ------------------------------- | ------------------------------------- |
+| Método                        | Descrição                             |
+| ----------------------------- | ------------------------------------- |
 | `res.send(texto)`             | Envia texto ou HTML                   |
 | `res.json(objeto)`            | Envia JSON (converte automaticamente) |
 | `res.status(codigo)`          | Define o status code (pode encadear)  |
@@ -838,8 +838,8 @@ Cada arquivo tem uma responsabilidade única. Se precisar adicionar rotas de usu
 
 ### Sistema de módulos do Node.js
 
-| Ação            | Código                                           |
-| ----------------- | ------------------------------------------------- |
+| Ação              | Código                                          |
+| ----------------- | ----------------------------------------------- |
 | Exportar          | `module.exports = { MinhaClasse, minhaFuncao }` |
 | Importar          | `const { MinhaClasse } = require('./arquivo')`  |
 | Router do Express | `const router = express.Router()`               |
