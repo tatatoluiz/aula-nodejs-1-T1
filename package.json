@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "teste": "echo SCRIPT de teste! ",
-    "karaoke": "node ./karaoke/player"
+    "karaoke": "node ./karaoke/player",
+    "serve": "nodemon app"
   },
   "dependencies": {
     "chalk": "^4.1.2",
