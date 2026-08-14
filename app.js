@@ -41,15 +41,59 @@ app.get('/', (req, res) => {
  *  
  */
 
+// Exemplo de GET /api/musicas — lista todas (usando loops simples, sem map)
+app.get('/api/musicas', (req, res) => {
+const musicas = musicaDAO.listarTodas();
 
-app.get('/musicas/:id', (req, res) =>{
-    //processamento da requisicao
-    const id = req.params.id;
-    const dadosMusica = JSON.stringify(player.musica);
-    res.statusCode = 200;
-    res.send(dadosMusica);
+// Retorna sem as partes para não sobrecarregar a listagem
+const resumo = [];
+for (let i = 0; i < musicas.length; i++) {
+const m = musicas[i];
+
+resumo.push({
+id: m.id,
+nome: m.nome,
+artista: m.artista,
+totalPartes: m.partes.length
+
+});
+}
+
+res.json(resumo);
 });
 
+// GET /api/musicas/:id — busca por ID
+app.get('/api/musicas/:id', (req, res) => {
+const id = Number(req.params.id);
+const musica = musicaDAO.buscarPorId(id);
+
+if (!musica) {
+return res.status(404).json({ erro: `Música com id ${id} não encontrada` });
+
+}
+
+res.json(musica);
+});
+
+// POST /api/musicas — cria nova música
+app.post('/api/musicas', (req, res) => {
+const { nome, artista } = req.body;
+if (!nome || !artista) {
+return res.status(400).json({ erro: 'Campos obrigatórios: nome, artista' });
+
+}
+
+const novaMusica = musicaDAO.inserir(nome, artista);
+res.status(201).json(novaMusica);
+});
+
+app.put('/api/musicas/:id', (req,res)=>{
+    const {nome, artista}= req.body;
+    if(isNaN(nome)||isNaN(artista)){
+        return res.status (400)
+    }
+    if()
+})
 //expor partes da musica
 
 app.get('/musicas/:id/partes/:parte', (req, res) =>{
