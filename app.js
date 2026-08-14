@@ -27,6 +27,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//3.1 rotas public
+app.use( express.static('public'));
+
 // 4. Definir rotas (os "balcões de atendimento")
 app.get('/', (req, res) => {
     res.send('Olá, cliente!');
@@ -100,5 +103,10 @@ app.post('/musicas/:id/partes', (req, res) =>{
 
 });
 
+// Middleware de erro — deve ser o último app.use()
+app.use((err, req, res, next) => {
+console.error('Erro no servidor:', err.message);
+res.status(500).json({ erro: 'Erro interno do servidor' });
+});
 
 app.listen(3000, ()=>{ console.log(`Servidor inciado.`) });
