@@ -1,11 +1,10 @@
 
 
 class Parte{
-    constructor( letra, tempoEspera, tag, cor ){
+    constructor( letra, tempoEspera, tag ){
         this.letra = letra;
         this.tempoEspera = tempoEspera;
         this.tag = tag;
-        this.cor=cor
     }
 
 }

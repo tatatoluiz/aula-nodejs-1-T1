@@ -5,6 +5,19 @@ const express = require('express');
 const player = require('./karaoke/player');
 const { Parte } = require('./karaoke/parte');
  
+// importacao do DAO de musicas
+const musicaDAO = require('./DAO/MusicaDAO');
+const { Musica } = require('./karaoke/musica');
+
+//uso do DAO
+const musica3x4 = musicaDAO.inserir('3x4', 'Engenheiros do Haway');
+musicaDAO.atualizar(musica3x4.id, musica3x4.nome, 'Engenheiros do Hawaii');
+console.log(JSON.stringify(musicaDAO.listarTodas()));
+musicaDAO.remover(0);
+console.log(JSON.stringify(musicaDAO.listarTodas()));
+
+
+
 
 
 // 2. Criar a aplicação (a "loja")
