@@ -196,5 +196,6 @@ app.post('/musicas/:id/partes', (req, res) => {
 
 });
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => { console.log(`Servidor inciado.`) });
+app.listen(PORT, () => { console.log(`Servidor inciado.`) });
