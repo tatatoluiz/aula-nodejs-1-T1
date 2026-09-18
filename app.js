@@ -110,7 +110,7 @@ app.put('/api/musicas/:id', (req,res) =>{
     }
 })
 
-app.delete('/api/musicas/:id'),(req,res)=>{
+app.delete('/api/musicas/:id',(req,res)=>{
     const id = Number(req.params.id);
     const musica = musicaDAO.buscarPorId(id);
      if (!musica) {
@@ -123,7 +123,7 @@ app.delete('/api/musicas/:id'),(req,res)=>{
     }catch(error){
         return res.status(500).json({msg:"explosão interna do servidor"})
     }
-}
+});
 app.post('/api/musicas/:id/partes',(req,res)=>{
     const id = Number(req.params.id);
     const musica = musicaDAO.buscarPorId(id);
