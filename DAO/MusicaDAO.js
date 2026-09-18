@@ -1,6 +1,6 @@
 // dao/musicaDAO.js
 const { Musica } = require('../karaoke/musica');
-
+const { Parte } = require('../karaoke/parte');
 class MusicaDAO {
     constructor() {
         // "banco de dados" em memória — array de objetos Musica
