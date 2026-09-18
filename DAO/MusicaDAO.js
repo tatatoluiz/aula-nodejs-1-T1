@@ -62,6 +62,15 @@ return false;
     const myHero = this.inserir('My Hero', 'Foo Fighters');
     // Adicione as partes da My Hero usando myHero.addParte(...)
     // (mesmo código que estava no player.js)
+    const tooAlarmin = 'Too alarmin now to talk about \n Take your pictures down and shake it out';
+const truthOrCon = 'Truth or consequence, say it aloud \n Use that evidence, race it around';
+const thereGoes = 'There goes my hero';
+const watchHim = 'Watch him as he goes';
+const hesOrdinary = 'He\'s ordinary';
+const dontTheBest = 'Don\'t the best of them bleed it out';
+const whileTheRest = 'While the rest of them peter out?';
+const kudos = 'Kudos, my hero \nLeavin all the best';
+const youKnow = 'You know my hero \nThe one thats on';
     myHero.addParte(
     new Parte(tooAlarmin, 13500, 'verso1',"blue")
 );
