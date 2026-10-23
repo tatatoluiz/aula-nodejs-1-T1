@@ -11,11 +11,14 @@
     "start": "node app",
     "teste": "echo SCRIPT de teste! ",
     "karaoke": "node ./karaoke/player",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "test-supabase": "node ./DAO/supabaseClient"
   },
   "dependencies": {
-    "@supabase/server": "^1.8.0",
+    "@supabase/server": "^1.9.2",
+    "@supabase/supabase-js": "^2.118.0",
     "chalk": "^4.1.2",
+    "dotenv": "^18.0.9",
     "express": "^5.2.1"
   },
   "engines": {
