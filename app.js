@@ -135,6 +135,14 @@ app.delete('/api/musicas/:id', (req, res) =>{
     res.status(200).json(musicaRemovida);
 });
 
+app.put('/api/musicas/:id', (req, res) =>{
+    const id = req.params.id;
+    
+    const { nome, artista } = req.body;
+    const musicaAtualizada = musicaDAO.atualizar(id, nome, artista);
+    res.status(200).json(musicaAtualizada);
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, ()=>{ console.log(`Servidor inciado.`) });
