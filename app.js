@@ -106,6 +106,35 @@ app.post('/musicas/:id/partes', (req, res) =>{
 
 });
 
+
+
+app.get('/api/musicas', (req, res) =>{
+    const dadosMusicas = JSON.stringify(musicaDAO.listarTodas());
+    res.statusCode = 200;
+    res.send(dadosMusicas);
+});
+
+app.get('/api/musicas/:id', (req, res) =>{
+    const id = req.params.id;
+    const dadosMusica = JSON.stringify(musicaDAO.buscarPorId(id));
+    res.statusCode = 200;
+    res.send(dadosMusica);
+});
+
+app.post('/api/musicas', (req, res) =>{
+    const { nome, artista } = req.body;
+    if (!nome || !artista) {
+        return res.status(400).json({ erro: 'Campos obrigatórios: nome, artista' });
+    }
+    res.status(201).json(musicaDAO.inserir(nome, artista));
+});    
+
+app.delete('/api/musicas/:id', (req, res) =>{
+    const id = req.params.id;
+    const musicaRemovida = musicaDAO.remover(id);
+    res.status(200).json(musicaRemovida);
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, ()=>{ console.log(`Servidor inciado.`) });
