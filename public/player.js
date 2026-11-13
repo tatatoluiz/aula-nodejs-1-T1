@@ -20,22 +20,53 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Passo 2 (roteiro 7.3) — busca GET /api/musicas e monta a playlist
 async function carregarPlaylist() {
-    // TODO: fazer o fetch de '/api/musicas' e converter com resposta.json()
-    // TODO: para cada música, criar um <li> com "nome — artista",
-    //       adicionar item.addEventListener('click', () => escolherMusica(musica.id))
-    //       e colocar na lista com listaEl.appendChild(item)
+    try {
+        const resposta = await fetch('/api/musicas');
+        const musicas = await resposta.json();
+        musicas.forEach((musica) => {
+            const item = document.createElement('li');
+            item.textContent = `${musica.nome} — ${musica.artista}`;
+            item.addEventListener('click', () => escolherMusica(musica.id));
+            listaEl.appendChild(item);
+        });
+    } catch (erro) {
+        console.error('Erro ao carregar playlist:', erro);
+    }
 }
 
 // Passo 3 (roteiro 7.4) — busca GET /api/musicas/:id e prepara o palco
 async function escolherMusica(id) {
-    // TODO: buscar a música completa (com partes) na API
-    // TODO: guardar o resultado em musicaAtual
-    // TODO: mostrar nome e artista no palco (nomeEl, artistaEl)
-    // TODO: habilitar o botão Tocar (btnTocar.disabled = false)
+    try {
+        const resposta = await fetch(`/api/musicas/${id}`);
+        const musica = await resposta.json();
+        musicaAtual = musica;
+        nomeEl.textContent = musica.nome;
+        artistaEl.textContent = musica.artista;
+        btnTocar.disabled = false;
+    } catch (erro) {
+        console.error('Erro ao escolher música:', erro);
+    }
 }
 
 // Passo 4 (roteiro 7.5) — percorre as partes com await sleep até o final
 async function tocar() {
+    
+        try {
+        
+        btnTocar.disabled = true;
+        for (const parte of musicaAtual.partes) {
+            //imprime parte e letra
+            console.log( " -- " + parte.tag + " --" );
+            console.log( "> " + parte.letra );
+            //agurda o tempo para a letra
+            await sleep( parte.tempoEspera );
+            
+        }
+        btnTocar.disabled = false;
+    } catch (error) {
+        btnTocar.disabled = false;
+        console.log("Erro ao tocar música: " + error.message);
+    }
     // TODO: implementar seguindo o roteiro 7.5
     //       (desabilitar o botão, percorrer as partes mostrando tag, letra
     //        e contador "parte X de Y", esperar o tempoEspera de cada uma,

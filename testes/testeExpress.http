@@ -14,6 +14,12 @@ GET http://localhost:3000/musicas/1/partes/1
 GET http://localhost:3000/musicas/1/play
 
 ###
+GET http://localhost:3000/api/musicas
+
+
+
+
+###
 POST http://localhost:3000/musicas/1/partes HTTP/1.1
 Content-Type: application/json
 meu-header: vale1
@@ -24,3 +30,12 @@ meu-header: vale1
     "tempoEspera": 3000
 }
 
+###
+POST http://localhost:3000/api/musicas HTTP/1.1
+Content-Type: application/json
+meu-header: vale1
+
+{
+    "nome": "Cálice",
+    "artista": "Chico Buarque feat. Milton Nascimento"
+}
